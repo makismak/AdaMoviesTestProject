@@ -11,7 +11,6 @@ namespace AdaMoviesTestProject
 {
     public class FileManager : IFileManager
     {
-        //C:\Users\Ajesivano\Documents\temp\file1.txt C:\Users\Ajesivano\Documents\temp\file2.txt C:\Users\Ajesivano\Documents\temp\file3.txt C:\Users\Ajesivano\Documents\temp\file4.txt
         public List<FileManagerModel> FileManagerList(List<string> filePaths)
         {
             List<FileManagerModel> fmmList = new List<FileManagerModel>();
