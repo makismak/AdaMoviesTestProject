@@ -15,13 +15,18 @@ namespace AdaMoviesTestProject
             #region Arguments
             List<string> parseArgumentList = new List<string>();
             List<FileManagerModel> fmmList = new List<FileManagerModel>();
+            List<MovieByFileModel> movieByFileModels = new List<MovieByFileModel>();
+            List<MovieModel> movieModels = new List<MovieModel>();
+            FileManager fileManager = new FileManager();
+            Examples examples = new Examples();
             string parameters = "";
             string message = "Eneter first 3 FilePath to get Data and after 1 file path to export infos.";
+            string writePath;
             bool check = true;
-            FileManager fileManager = new FileManager();
             #endregion
 
             parameters = ParseFromTerminal(message);
+
             parameters.Split(' ').ToList().ForEach(x => parseArgumentList.Add(x));
             if (parseArgumentList.Count() != 4)
                 InitParseArgument();
@@ -30,8 +35,16 @@ namespace AdaMoviesTestProject
                 fmmList = fileManager.FileManagerList(parseArgumentList);
                 if (!CheckIfFileExits(fmmList))
                     InitParseArgument();
+
+                movieByFileModels = fileManager.ReadedFile(fmmList);
+                writePath = fmmList.Where(x => x.IsRead == 0).FirstOrDefault().FilePath;
+                // this need to run every time where i need to write somehting o file 
+                fileManager.WriteOnFileExample1(writePath, examples.Example1(movieByFileModels));
+                fileManager.WriteOnFileExample2(writePath, examples.Example2(movieByFileModels));
             }
+
         }
+
         private string ParseFromTerminal(string message)
         {
             string getParameter;
@@ -42,7 +55,8 @@ namespace AdaMoviesTestProject
                 ParseFromTerminal("need to add 4 parameters");
             return getParameter;
         }
-        private bool CheckIfFileExits(List<Model.FileManagerModel> fileLists)
+
+        private bool CheckIfFileExits(List<FileManagerModel> fileLists)
         {
             bool correct = true;
             for (int i = 0; i < fileLists.Count; i++)
