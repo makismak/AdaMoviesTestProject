@@ -40,7 +40,11 @@ namespace AdaMoviesTestProject
                 writePath = fmmList.Where(x => x.IsRead == 0).FirstOrDefault().FilePath;
                 // this need to run every time where i need to write somehting o file 
                 fileManager.WriteOnFileExample1(writePath, examples.Example1(movieByFileModels));
-                fileManager.WriteOnFileExample2(writePath, examples.Example2(movieByFileModels));
+                List<MoviesWithWatchingPercent> moviesWithWatchingPercents = new List<MoviesWithWatchingPercent>();
+                moviesWithWatchingPercents = examples.Example2(movieByFileModels);
+                fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents ,2);
+                fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents.Where(x=> x.WatchedPercent > 60 ).OrderBy(y=> y.FileName).ThenBy(y => y.Genre).ToList(), 3);
+
             }
 
         }

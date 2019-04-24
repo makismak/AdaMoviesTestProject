@@ -11,6 +11,7 @@ namespace AdaMoviesTestProject
 {
     public class FileManager : IFileManager
     {
+        //C:\Users\Ajesivano\Documents\temp\file1.txt C:\Users\Ajesivano\Documents\temp\file2.txt C:\Users\Ajesivano\Documents\temp\file3.txt C:\Users\Ajesivano\Documents\temp\file4.txt
         public List<FileManagerModel> FileManagerList(List<string> filePaths)
         {
             List<FileManagerModel> fmmList = new List<FileManagerModel>();
@@ -70,12 +71,12 @@ namespace AdaMoviesTestProject
 
             }
         }
-        public void WriteOnFileExample2(string filePath, List<MoviesWithWatchingPercent> moviesWithWatchingPercents)
+        public void WriteOnFileExample2(string filePath, List<MoviesWithWatchingPercent> moviesWithWatchingPercents, int exampleNumber)
         {
             using (StreamWriter sw = (File.Exists(filePath)) ? File.AppendText(filePath) : File.CreateText(filePath))
             {
                 string personName = null;
-                sw.WriteLine("---------------------------- Example2 -----------------------");
+                sw.WriteLine("---------------------------- Example{0} -----------------------", exampleNumber);
                 foreach (MoviesWithWatchingPercent item in moviesWithWatchingPercents)
                 {
                     if (String.IsNullOrEmpty(personName) || personName != item.FileName)
@@ -83,7 +84,15 @@ namespace AdaMoviesTestProject
                         personName = item.FileName;
                         sw.WriteLine("---------------------------- Person Name : {0} -----------------------", item.FileName);
                     }
-                    sw.WriteLine("{0} AverageWathedTime: {1}%", item.MovieName, item.WatchedPercent);
+                    if (exampleNumber == 2)
+                    {
+                        sw.WriteLine("MovieName: {0} AverageWathedTime: {1}%", item.MovieName, item.WatchedPercent);
+                    }
+                    else
+                    {
+                        sw.WriteLine("MovieName: {0} AverageWathedTime: {1}% Genre: {2}", item.MovieName, item.WatchedPercent, item.Genre);
+                    }
+                    
 
                 }
 

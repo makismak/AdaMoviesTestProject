@@ -53,17 +53,14 @@ namespace AdaMoviesTestProject
                     {
                         FileName = mvByFile.FileName,
                         MovieName = mvModel.MovieName,
-                        WatchedPercent = Math.Round(AvgWatchedPercent, 2)
+                        WatchedPercent = Math.Round(AvgWatchedPercent, 2),
+                        Genre = mvModel.MovieCategory
                     });
 
 
                 }
             }
             return moviesWithWatchingPercents;
-        }
-        public string Example3(List<MovieByFileModel> movieByFileModels)
-        {
-            return "";
         }
         public string Example4(List<MovieByFileModel> movieByFileModels)
         { 

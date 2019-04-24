@@ -8,6 +8,7 @@ namespace AdaMoviesTestProject
         {
             InitMoives MvClass = new InitMoives();
             MvClass.InitParseArgument();
+            Console.WriteLine("DONE");
             Console.ReadKey();
         }
     }

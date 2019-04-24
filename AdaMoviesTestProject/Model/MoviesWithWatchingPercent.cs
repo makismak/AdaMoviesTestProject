@@ -9,5 +9,6 @@ namespace AdaMoviesTestProject.Model
         public string FileName { get; set; }
         public string MovieName { get; set; }
         public decimal WatchedPercent { get; set; }
+        public string Genre { get; set; }
     }
 }

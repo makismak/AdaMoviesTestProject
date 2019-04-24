@@ -9,7 +9,6 @@ namespace AdaMoviesTestProject.Interfaces
     {
         List<MovieModel> Example1(List<MovieByFileModel> movieByFileModels);
         List<MoviesWithWatchingPercent> Example2(List<MovieByFileModel> movieByFileModels);
-        string Example3(List<MovieByFileModel> movieByFileModels);
         string Example4(List<MovieByFileModel> movieByFileModels);
     }
 }
