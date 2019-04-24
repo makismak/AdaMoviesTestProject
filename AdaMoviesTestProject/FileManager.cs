@@ -1,4 +1,5 @@
-﻿using AdaMoviesTestProject.Model;
+﻿using AdaMoviesTestProject.Interfaces;
+using AdaMoviesTestProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace AdaMoviesTestProject
 {
-    public class FileManager
+    public class FileManager: IFileManager
     {
         public List<FileManagerModel> FileManagerList(List<string> filePaths)
         {
@@ -17,6 +18,11 @@ namespace AdaMoviesTestProject
             }
 
             return fmmList;
+        }
+
+        public List<MovieByFileModel> ReadedFile(List<FileManagerModel> fmmList)
+        {
+            throw new NotImplementedException();
         }
     }
 }

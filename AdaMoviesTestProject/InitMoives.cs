@@ -1,4 +1,5 @@
-﻿using AdaMoviesTestProject.Model;
+﻿using AdaMoviesTestProject.Interfaces;
+using AdaMoviesTestProject.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace AdaMoviesTestProject
 {
-    public class InitMoives
+    public class InitMoives : IInitMoives
     {
         public void InitParseArgument()
         {
