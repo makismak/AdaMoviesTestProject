@@ -62,10 +62,20 @@ namespace AdaMoviesTestProject
             }
             return moviesWithWatchingPercents;
         }
-        public string Example4(List<MovieByFileModel> movieByFileModels)
-        { 
-            return "";
+        public List<GenreAndAvgTimeModel> Example4(List<MoviesWithWatchingPercent> moviesWithWatchingPercents)
+        {
+            List<GenreAndAvgTimeModel> genreAndAvgTimes = new List<GenreAndAvgTimeModel>();
+            
+            moviesWithWatchingPercents.GroupBy(x => x.Genre).Select(g => new { g.Key, MaxWatcedDate = g.Average(cm => cm.WatchedPercent) }).ToList().OrderByDescending(y=>y.MaxWatcedDate).Take(2).ToList().ForEach(x=> genreAndAvgTimes.Add(new GenreAndAvgTimeModel { Genre = x.Key,MaxWatcedDate = x.MaxWatcedDate}));
+            
+            return genreAndAvgTimes;
+        }
+
+        public string Example5(List<MoviesWithWatchingPercent> moviesWithWatchingPercents)
+        {
+            return moviesWithWatchingPercents.GroupBy(x => x.MovieName).Select(y => new { y.Key, countWatchedPersons = y.Count(), MaxWatcedDate = y.Average(cm => cm.WatchedPercent)}).OrderByDescending(z => z.countWatchedPersons).ThenByDescending(z=>z.MaxWatcedDate).ToList().FirstOrDefault().Key.ToString();
         }
 
     }
+
 }

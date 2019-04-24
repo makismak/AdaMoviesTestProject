@@ -98,5 +98,30 @@ namespace AdaMoviesTestProject
 
             }
         }
+        public void WriteOnFileExample4(string filePath, List<GenreAndAvgTimeModel> genreAndAvgTimes)
+        {
+            using (StreamWriter sw = (File.Exists(filePath)) ? File.AppendText(filePath) : File.CreateText(filePath))
+            {
+                sw.WriteLine("---------------------------- Example4 -----------------------");
+                for(int i=0; i< genreAndAvgTimes.Count; i++)
+                {
+                    sw.WriteLine("-------------------------- {0} Most PopularCategory : {1} by Avg Watched Time {2}-----------------------" , i, genreAndAvgTimes[i].Genre, genreAndAvgTimes[i].MaxWatcedDate);
+
+                }
+
+            }
+        }
+
+        public void WriteOnFileExample5(string filePath, string bestRecomendedMovie)
+        {
+            using (StreamWriter sw = (File.Exists(filePath)) ? File.AppendText(filePath) : File.CreateText(filePath))
+            {
+                
+                sw.WriteLine("---------------------------- Example5 -----------------------");
+                sw.WriteLine("-------------------------- Best recomended Movie is {0} -----------------------", bestRecomendedMovie);
+
+
+            }
+        }
     }
 }

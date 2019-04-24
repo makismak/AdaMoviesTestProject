@@ -44,7 +44,10 @@ namespace AdaMoviesTestProject
                 moviesWithWatchingPercents = examples.Example2(movieByFileModels);
                 fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents ,2);
                 fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents.Where(x=> x.WatchedPercent > 60 ).OrderBy(y=> y.FileName).ThenBy(y => y.Genre).ToList(), 3);
-
+                moviesWithWatchingPercents = examples.Example2(movieByFileModels);
+                fileManager.WriteOnFileExample4(writePath, examples.Example4(moviesWithWatchingPercents));
+                fileManager.WriteOnFileExample5(writePath, examples.Example5(moviesWithWatchingPercents));
+                
             }
 
         }
