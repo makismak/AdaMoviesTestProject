@@ -33,21 +33,33 @@ namespace AdaMoviesTestProject
             else
             {
                 fmmList = fileManager.FileManagerList(parseArgumentList);
-                if (!CheckIfFileExits(fmmList))
-                    InitParseArgument();
+                try
+                {
+                    if (!CheckIfFileExits(fmmList))
+                    {
+                        throw new Exception(message: "ProblemWithData");
+                    }
 
-                movieByFileModels = fileManager.ReadedFile(fmmList);
-                writePath = fmmList.Where(x => x.IsRead == 0).FirstOrDefault().FilePath;
-                // this need to run every time where i need to write somehting o file 
-                fileManager.WriteOnFileExample1(writePath, examples.Example1(movieByFileModels));
-                List<MoviesWithWatchingPercent> moviesWithWatchingPercents = new List<MoviesWithWatchingPercent>();
-                moviesWithWatchingPercents = examples.Example2(movieByFileModels);
-                fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents ,2);
-                fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents.Where(x=> x.WatchedPercent > 60 ).OrderBy(y=> y.FileName).ThenBy(y => y.Genre).ToList(), 3);
-                moviesWithWatchingPercents = examples.Example2(movieByFileModels);
-                fileManager.WriteOnFileExample4(writePath, examples.Example4(moviesWithWatchingPercents));
-                fileManager.WriteOnFileExample5(writePath, examples.Example5(moviesWithWatchingPercents));
-                
+
+                    movieByFileModels = fileManager.ReadedFile(fmmList);
+                    writePath = fmmList.Where(x => x.IsRead == 0).FirstOrDefault().FilePath;
+                    // this need to run every time where i need to write somehting o file 
+                    fileManager.WriteOnFileExample1(writePath, examples.Example1(movieByFileModels));
+                    List<MoviesWithWatchingPercent> moviesWithWatchingPercents = new List<MoviesWithWatchingPercent>();
+                    moviesWithWatchingPercents = examples.Example2(movieByFileModels);
+                    fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents, 2);
+                    fileManager.WriteOnFileExample2(writePath, moviesWithWatchingPercents.Where(x => x.WatchedPercent > 60).OrderBy(y => y.FileName).ThenBy(y => y.Genre).ToList(), 3);
+                    moviesWithWatchingPercents = examples.Example2(movieByFileModels);
+                    fileManager.WriteOnFileExample4(writePath, examples.Example4(moviesWithWatchingPercents));
+                    fileManager.WriteOnFileExample5(writePath, examples.Example5(moviesWithWatchingPercents));
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    InitParseArgument();
+                }
+               
             }
 
         }
