@@ -6,7 +6,9 @@ namespace AdaMoviesTestProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            InitMoives MvClass = new InitMoives();
+            MvClass.InitParseArgument();
+            Console.ReadKey();
         }
     }
 }
