@@ -6,10 +6,11 @@ namespace AdaMoviesTestProject
     {
         static void Main(string[] args)
         {
-            InitMoives MvClass = new InitMoives();
+            InitMovies MvClass = new InitMovies();
             MvClass.InitParseArgument();
             Console.WriteLine("DONE");
             Console.ReadKey();
         }
     }
 }
+
